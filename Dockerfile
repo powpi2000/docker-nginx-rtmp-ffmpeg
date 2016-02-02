@@ -51,6 +51,7 @@ RUN curl -sSL https://github.com/arut/nginx-rtmp-module/archive/${NGINX_RTMP_MOD
 RUN cd /usr/src/nginx-$NGINX_VERSION && dpkg-buildpackage -b 
 RUN ls -al /usr/src
 RUN dpkg --install /usr/src/nginx-common_${NGINX_DISTRO_FULL_VERSION}_all.deb /usr/src/nginx-full_${NGINX_DISTRO_FULL_VERSION}_amd64.deb
+RUM rm -rf /usr/src/*
 
 EXPOSE 80 1935
 
