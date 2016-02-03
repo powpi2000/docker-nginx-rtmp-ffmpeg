@@ -2,10 +2,10 @@ FROM ubuntu:14.04
 MAINTAINER eric <powpi2000@gmail.com>
 
 ENV FFMPEG_VERSION 2.8.6
-ENV NGINX_VERSION 1.8.1
-#ENV NGINX_VERSION 1.4.6
-ENV NGINX_DISTRO_VERSION 1+trusty0
-#ENV NGINX_DISTRO_VERSION 1ubuntu3.3
+#ENV NGINX_VERSION 1.8.1
+ENV NGINX_VERSION 1.4.6
+#ENV NGINX_DISTRO_VERSION 1+trusty0
+ENV NGINX_DISTRO_VERSION 1ubuntu3.3
 ENV NGINX_DISTRO_FULL_VERSION $NGINX_VERSION-$NGINX_DISTRO_VERSION
 ENV NGINX_RTMP_MODULE_VERSION master
 
@@ -51,7 +51,10 @@ RUN curl -sSL https://github.com/arut/nginx-rtmp-module/archive/${NGINX_RTMP_MOD
 RUN cd /usr/src/nginx-$NGINX_VERSION && dpkg-buildpackage -b 
 RUN ls -al /usr/src
 RUN dpkg --install /usr/src/nginx-common_${NGINX_DISTRO_FULL_VERSION}_all.deb /usr/src/nginx-full_${NGINX_DISTRO_FULL_VERSION}_amd64.deb
-RUM rm -rf /usr/src/*
+RUN rm -rf /usr/src/*
+RUN pip install request
+RUN mkdir /tmp/history
+RUN chown www-data /tmp/history
 
 EXPOSE 80 1935
 
