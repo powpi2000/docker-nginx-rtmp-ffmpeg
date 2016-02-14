@@ -56,6 +56,6 @@ RUN pip install request
 RUN mkdir /tmp/history
 RUN chown www-data /tmp/history
 
-EXPOSE 80 1935
+EXPOSE 1935
 
 CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]
