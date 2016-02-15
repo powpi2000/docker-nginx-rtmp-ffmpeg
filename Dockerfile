@@ -45,7 +45,7 @@ RUN echo 'deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main' >> /etc/
 RUN ls -al /usr/src
 
 RUN curl -sSL https://github.com/arut/nginx-rtmp-module/archive/${NGINX_RTMP_MODULE_VERSION}.tar.gz | tar -xzC /usr/src/nginx-${NGINX_VERSION}/ && \
-    sed -ri '/^common_configure_flags := \\$/ a\	    		--add-module=/usr/src/nginx-$(NGINX_VERSION)/nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION} \\' /usr/src/nginx-$NGINX_VERSION/debian/rules && \
+    sed -ri '/^common_configure_flags := \\$/ a\	    		--add-module=/usr/src/nginx-$(NGINX_VERSION)/nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION} --with-debug\\' /usr/src/nginx-$NGINX_VERSION/debian/rules && \
     sed -ri '/^common_configure_flags := \\$/ a\    			--with-http_secure_link_module \\' /usr/src/nginx-$NGINX_VERSION/debian/rules 
 
 RUN cd /usr/src/nginx-$NGINX_VERSION && dpkg-buildpackage -b 
