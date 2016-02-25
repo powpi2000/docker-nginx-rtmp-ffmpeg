@@ -53,8 +53,8 @@ RUN ls -al /usr/src
 RUN dpkg --install /usr/src/nginx-common_${NGINX_DISTRO_FULL_VERSION}_all.deb /usr/src/nginx-full_${NGINX_DISTRO_FULL_VERSION}_amd64.deb
 RUN rm -rf /usr/src/*
 RUN pip install request
-RUN mkdir /tmp/history
-RUN chown www-data /tmp/history
+#RUN mkdir /tmp/history
+#RUN chown www-data /tmp/history
 
 EXPOSE 1935
 
